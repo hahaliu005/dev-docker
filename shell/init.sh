@@ -30,3 +30,6 @@ web:
     - ${WEB_DIR}:/usr/local/openresty/nginx/html
 
 " > ${CURRENT_DIR}/docker-compose.yml
+
+execCmd "echo ${DOCKER_USER_ID} > ${CURRENT_DIR}/.docker_user_id"
+execCmd "echo ${DOCKER_USER_ID} > ${CURRENT_DIR}/.docker_group_id"
