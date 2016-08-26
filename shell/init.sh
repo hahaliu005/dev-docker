@@ -11,6 +11,7 @@ mysql:
     - `expr ${PORT_OFFSET} + 3306`:3306
   environment:
     MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+    MYSQL_DATABASE: ${MYSQL_DATABASE}
   volumes:
     - ${MYSQL_DATA_DIR}:/var/lib/mysql
 
@@ -27,7 +28,7 @@ web:
     - mysql
     - redis
   volumes:
-    - ${WEB_DIR}:/usr/local/openresty/nginx/html
+    - ${WEB_DIR}:/var/www
 
 " > ${CURRENT_DIR}/docker-compose.yml
 
