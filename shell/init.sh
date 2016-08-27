@@ -31,5 +31,10 @@ web:
 
 " > ${CURRENT_DIR}/docker-compose.yml
 
+# 获取当前用户的user_id与group_id, 以便在dockerfile中动态配置运行的用户
 execCmd "echo ${DOCKER_USER_ID} > ${CURRENT_DIR}/.docker_user_id"
-execCmd "echo ${DOCKER_USER_ID} > ${CURRENT_DIR}/.docker_group_id"
+execCmd "find dockers -type d -maxdepth 1 | xargs -I {} cp ./.docker_user_id {}"
+execCmd "echo ${DOCKER_GROUP_ID} > ${CURRENT_DIR}/.docker_group_id"
+execCmd "find dockers -type d -maxdepth 1 | xargs -I {} cp ./.docker_group_id {}"
+
+myEcho "Init ended ..."
