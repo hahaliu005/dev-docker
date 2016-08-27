@@ -1,4 +1,6 @@
+/html
 /docker-compose.yml
 /data
 .docker_user_id
 .docker_group_id
+/shell/config.sh
