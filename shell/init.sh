@@ -33,7 +33,7 @@ web:
 trans:
   build: ${DOCKER_DIR}/trans
   ports:
-    - `expr ${PORT_OFFSET} + 80`:80
+    - `expr ${PORT_OFFSET} + 81`:80
   links:
     - mysql
     - redis
