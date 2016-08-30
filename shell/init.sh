@@ -29,6 +29,7 @@ web:
     - redis
   volumes:
     - ${WEB_DIR}:/var/www
+    - ${DATA_DIR}:/var/www/storage/data
 
 trans:
   build: ${DOCKER_DIR}/trans
@@ -39,6 +40,7 @@ trans:
     - redis
   volumes:
     - ${TRANS_DIR}:/var/www
+    - ${DATA_DIR}:/var/www/storage/data
 
 " > ${CURRENT_DIR}/docker-compose.yml
 
