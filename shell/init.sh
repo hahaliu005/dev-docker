@@ -20,7 +20,21 @@ redis:
   ports:
     - `expr ${PORT_OFFSET} + 6379`:6379
 
-web:
+image:
+  build: $DOCKER_DIR/image
+  ports:
+    - `expr ${PORT_OFFSET} + 90`:80
+  volumes:
+    - ${WEB_DATA_DIR}/image:/var/www
+
+media:
+  build: $DOCKER_DIR/media
+  ports:
+    -   `expr ${PORT_OFFSET} + 91`:80
+  volumes:
+    - ${WEB_DATA_DIR}/video/released:/var/www
+
+portal:
   build: ${DOCKER_DIR}/web
   ports:
     - `expr ${PORT_OFFSET} + 80`:80
@@ -28,19 +42,30 @@ web:
     - mysql
     - redis
   volumes:
-    - ${WEB_DIR}:/var/www
-    - ${DATA_DIR}:/var/www/storage/data
+    - ${PORTAL_DIR}:/var/www
+    - ${WEB_DATA_DIR}:/var/www/storage/data
 
-trans:
-  build: ${DOCKER_DIR}/trans
+admin:
+  build: ${DOCKER_DIR}/web
   ports:
     - `expr ${PORT_OFFSET} + 81`:80
   links:
     - mysql
     - redis
   volumes:
+    - ${ADMIN_DIR}:/var/www
+    - ${WEB_DATA_DIR}:/var/www/storage/data
+
+trans:
+  build: ${DOCKER_DIR}/trans
+  ports:
+    - `expr ${PORT_OFFSET} + 82`:80
+  links:
+    - mysql
+    - redis
+  volumes:
     - ${TRANS_DIR}:/var/www
-    - ${DATA_DIR}:/var/www/storage/data
+    - ${WEB_DATA_DIR}:/var/www/storage/data
 
 " > ${CURRENT_DIR}/docker-compose.yml
 

@@ -7,4 +7,9 @@ MYSQL_PASSWORD="111"
 PORT_OFFSET="1000"
 
 # web服务的路径
-WEB_DIR="${CURRENT_DIR}/html"
+PORTAL_DIR="${CURRENT_DIR}/html"
+ADMIN_DIR="${CURRENT_DIR}/html"
+TRANS_DIR="${CURRENT_DIR}/html"
+
+# web服务共享数据的路径
+WEB_DATA_DIR="${DATA_DIR}/data"
